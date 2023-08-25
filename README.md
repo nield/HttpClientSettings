@@ -1,4 +1,5 @@
 # HttpClientSettings
+[![.NET](https://github.com/nield/HttpClientSettings/actions/workflows/dotnet.yml/badge.svg)](https://github.com/nield/HttpClientSettings/actions/workflows/dotnet.yml)
 
 HttpClientSettings is a convention based http endpoint data storage and retrieval mechanism without enforcing how to make the http calls. It is up to the developer what tech the want to use to make the http calls, this is purely for storing and retrieving endpoint data. 
 
