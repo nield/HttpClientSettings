@@ -1,6 +1,4 @@
-﻿using System.Net;
-
-namespace HttpClientSettings.Tests.Validators;
+﻿namespace HttpClientSettings.Tests.Validators;
 
 public class HttpClientAppSettingsValidatorTests
 {
@@ -8,8 +6,6 @@ public class HttpClientAppSettingsValidatorTests
 
     private const string _defaultClientName = "testClient";
     private const string _defaultEndpointName = "testEndpoint";
-
-    private HttpClientAppSettingsValidator _validator;
 
     [Fact]
     public void Constructor_GivenNullSettings_ShouldThrowException()
@@ -29,9 +25,9 @@ public class HttpClientAppSettingsValidatorTests
 
         _settings.LoadClientsForUnitTesting(clients);
 
-        _validator = new(_settings);
+        var validator = new HttpClientAppSettingsValidator(_settings);
 
-        var sut = _validator.Validate();
+        var sut = validator.Validate();
 
         sut.IsSuccess.Should().BeFalse();
         sut.Errors.Should().Contain($"{nameof(HttpClientSetting.Name)} is required");
@@ -48,9 +44,9 @@ public class HttpClientAppSettingsValidatorTests
 
         _settings.LoadClientsForUnitTesting(clients);
 
-        _validator = new(_settings);
+        var validator = new HttpClientAppSettingsValidator(_settings);
 
-        var sut = _validator.Validate();
+        var sut = validator.Validate();
 
         sut.IsSuccess.Should().BeFalse();
         sut.Errors.Should().Contain($"ClientName: '{_defaultClientName}', {nameof(HttpClientSetting.BaseUri)} is required");
@@ -67,9 +63,9 @@ public class HttpClientAppSettingsValidatorTests
 
         _settings.LoadClientsForUnitTesting(clients);
 
-        _validator = new(_settings);
+        var validator = new HttpClientAppSettingsValidator(_settings);
 
-        var sut = _validator.Validate();
+        var sut = validator.Validate();
 
         sut.IsSuccess.Should().BeFalse();
         sut.Errors.Should().Contain($"ClientName: '{_defaultClientName}', {nameof(HttpClientSetting.BaseUri)} is not a valid uri");
@@ -86,9 +82,9 @@ public class HttpClientAppSettingsValidatorTests
 
         _settings.LoadClientsForUnitTesting(clients);
 
-        _validator = new(_settings);
+        var validator = new HttpClientAppSettingsValidator(_settings);
 
-        var sut = _validator.Validate();
+        var sut = validator.Validate();
 
         sut.IsSuccess.Should().BeFalse();
         sut.Errors.Should().Contain($"ClientName: '{_defaultClientName}', {nameof(HttpClientSetting.Endpoints)} is required");
@@ -110,9 +106,9 @@ public class HttpClientAppSettingsValidatorTests
 
         _settings.LoadClientsForUnitTesting(clients);
 
-        _validator = new(_settings);
+        var validator = new HttpClientAppSettingsValidator(_settings);
 
-        var sut = _validator.Validate();
+        var sut = validator.Validate();
 
         sut.IsSuccess.Should().BeFalse();
         sut.Errors.Should().Contain($"ClientName: '{_defaultClientName}', Endpoint {nameof(EndpointSettings.Name)} is required");
@@ -135,9 +131,9 @@ public class HttpClientAppSettingsValidatorTests
 
         _settings.LoadClientsForUnitTesting(clients);
 
-        _validator = new(_settings);
+        var validator = new HttpClientAppSettingsValidator(_settings);
 
-        var sut = _validator.Validate();
+        var sut = validator.Validate();
 
         sut.IsSuccess.Should().BeFalse();
         sut.Errors.Should().Contain($"ClientName: '{_defaultClientName}', Endpoint {nameof(EndpointSettings.Uri)} is required");
