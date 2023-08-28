@@ -16,9 +16,9 @@ public class PokemonService : IPokemonService
 
     public async Task<PagedPokemon> GetPagedPokemon(int take = 10, int skip = 0, CancellationToken cancellationToken = default)
     {
-        var endpoint = _httpClientOptions.GetEndpoint("Pokemon", "GetPagedPokemon", skip, take);
+        var client = _httpClientFactory.CreateClient();
 
-        var client = _httpClientFactory.CreateClient(endpoint.Name);
+        var endpoint = _httpClientOptions.GetEndpoint("Pokemon", "GetPagedPokemon", skip, take);
 
         return await client.GetFromJsonAsync<PagedPokemon>(endpoint.FullUri, cancellationToken)
             ?? new PagedPokemon();
@@ -26,9 +26,9 @@ public class PokemonService : IPokemonService
 
     public async Task<Pokemon> GetPokemon(int id, CancellationToken cancellationToken = default)
     {
-        var endpoint = _httpClientOptions.GetEndpoint("Pokemon", "GetPokemon", id);
+        var client = _httpClientFactory.CreateClient();
 
-        var client = _httpClientFactory.CreateClient(endpoint.Name);
+        var endpoint = _httpClientOptions.GetEndpoint("Pokemon", "GetPokemon", id);        
 
         return await client.GetFromJsonAsync<Pokemon>(endpoint.FullUri, cancellationToken)
             ?? new Pokemon();
