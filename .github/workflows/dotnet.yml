@@ -16,6 +16,10 @@ on:
 env:
   NuGetDirectory: ${{ github.workspace}}/nuget
 
+defaults:
+  run:
+    shell: pwsh
+
 jobs:
   build_and_test:
 
