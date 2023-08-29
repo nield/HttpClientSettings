@@ -15,13 +15,7 @@ In order to use the *IOptions<HttpClientAppSettings>* to retrieve the stored end
 builder.Services.AddHttpClientSettings(builder.Configuration);
 ```
 
-If you want to validate the data structure you can add the following after the app is build in the program file
-
-```csharp
-app.ValidateHttpClientSettings();
-```
-
-In the appSettings.json file add a new section called **HttpClientSettins** with your endpoints grouped under a client. Please ensure each Client Name is unique as well as the endpoint name under each client.
+In the appSettings.json file add a new section called **HttpClientSettings** with your endpoints grouped under a client. Please ensure each Client Name is unique as well as the endpoint name under each client.
 
 Passing parameters to the url is achieved by specifying the placeholders in the url with an index as you would with normal string.Format in C#
 

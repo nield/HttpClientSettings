@@ -30,8 +30,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.ValidateHttpClientSettings();
-
 app.MapGet("/pokemon", async (
     [FromQuery]int take,
     [FromQuery]int skip,
