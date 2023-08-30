@@ -15,7 +15,7 @@ builder.Services.AddHttpClient();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-builder.Services.AddHttpClientSettings(builder.Configuration);
+builder.Services.AddHttpClientSettings(builder.Configuration, validateSettings: true);
 
 builder.Services.AddScoped<IPokemonService, PokemonService>();
 

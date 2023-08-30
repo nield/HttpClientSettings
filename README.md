@@ -9,10 +9,12 @@ This library removes the pain of coming up with your own storage structure and b
 
 ## Usage
 
-In order to use the *IOptions<HttpClientAppSettings>* to retrieve the stored endpoints the library must be added to the program
+In order to use the *IOptions<HttpClientAppSettings>* to retrieve the stored endpoints the library must be added to the program.
+
+**validateSettings** is default true. It validates the endpoint values in the appSettings file.
 
 ```csharp
-builder.Services.AddHttpClientSettings(builder.Configuration);
+builder.Services.AddHttpClientSettings(builder.Configuration, validateSettings: true);
 ```
 
 In the appSettings.json file add a new section called **HttpClientSettings** with your endpoints grouped under a client. Please ensure each Client Name is unique as well as the endpoint name under each client.
