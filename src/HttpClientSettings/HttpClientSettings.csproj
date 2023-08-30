@@ -7,6 +7,12 @@
     <MinVerMinimumMajorMinor>1.0</MinVerMinimumMajorMinor>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);1591</NoWarn>
+    <Authors>Niel de Wet</Authors>
+    <Description>HttpClientSettings is a convention based http endpoint data storage and retrieval mechanism without enforcing how to make http calls.</Description>
+    <RepositoryUrl>https://github.com/nield/HttpClientSettings</RepositoryUrl>
+    <RepositoryType>git</RepositoryType> 
+    <PackageTags>httpclientfactory, httpclient, endpoints</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
