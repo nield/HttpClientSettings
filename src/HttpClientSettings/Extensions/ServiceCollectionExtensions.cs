@@ -10,17 +10,28 @@ namespace HttpClientSettings
         {
             var section = configuration.GetRequiredSection(Constants.AppSettings.SectionName);
 
-            services.Configure<HttpClientAppSettings>(section)
-                .PostConfigure<HttpClientAppSettings>(config =>
+            services.AddOptions<HttpClientAppSettings>()
+                .Bind(section)
+                .Validate(httpClientAppSettings =>
                 {
-                    if (validateSettings)
-                    {
-                        var validator = new HttpClientAppSettingsValidator(config);
-                        validator.Validate();
-                    }
+                    if (validateSettings) ValidateHttpClientAppSettings(httpClientAppSettings);
+
+                    return true;
                 });
 
             return services;
+        }
+
+        internal static void ValidateHttpClientAppSettings(HttpClientAppSettings httpClientAppSettings)
+        {
+            var validator = new HttpClientAppSettingsValidator(httpClientAppSettings);
+
+            var validationResponse = validator.Validate();
+
+            if (!validationResponse.IsSuccess)
+            {
+                throw new InvalidAppSettingsException(validationResponse.Errors);
+            }
         }
     }
 }
